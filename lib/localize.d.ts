@@ -32,13 +32,14 @@ export declare type Dictionary = {
 export declare function setDictionary(locale: Language, dictionary_: Dictionary): void;
 /**
  * Localize the given string/template
- * @param orgString
- * @param namespace the namespace to use
+ * @param input
+ * @param namespace the namespace to use.
  */
-export declare function localize(orgString: string | number, namespace?: string): string;
+export declare function localize(input: string | number, namespace?: string): string;
 /**
  * Localize all tags marked with the "localize" attribute.
- * Note that this function is good just for static stuff. Otherwise, do it dynamically (in JS)
- * @param root starting point to check
+ * Note that if the page, or the part under the rootElement changes, the method should be called again.
+ * @param rootElement starting point to check
+ * @param namespace the namespace to use. A 'localize' attribute can also denotes the namespace.
  */
-export declare function localizeTags(root?: Element, namespace?: string): void;
+export declare function localizeTags(rootElement?: Element, namespace?: string): void;
