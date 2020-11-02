@@ -44,12 +44,15 @@
             }
         }
     }
-    setDictionary('en', dictionaries['en'])
-    localizeTags()
+    changeLocale(document.getElementById('lang').value);
     document.getElementById('lang').onchange = (event) => {
         const locale = event.target.value
+        changeLocale(locale)
+    }
+    function changeLocale(locale) {
         setDictionary(locale, dictionaries[locale])
         localizeTags()
+
     }
 </script>
 
