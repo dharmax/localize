@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example</title>
+</head>
+<body>
+
+<section class="form">
+    <label>Display Name: (english alpha only)
+        <input ref="name" type="text" pattern="[a-zA-Z ]*">
+    </label>
+    <div class="bio">
+        <label>About myself <br>
+            <textarea ref="generalBio" cols="30" rows="10"></textarea>
+        </label><br>
+    </div>
+    <div class="main-language">
+        <label>Main Language
+            <select autocomplete="on" ref="preferredLanguage">
+                <option value="English">English</option>
+                <option value="German">German</option>
+                <option value="French">French</option>
+            </select>
+        </label>
+    </div>
+    <p>
+        <button>Send All</button>
+    </p>
+    <label class="errors">
+        Illegal values:
+        <pre id="errors"></pre>
+    </label>
+</section>
+</body>
+<style>
+    section.form {
+        margin: 5em;
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    button {
+        width: 10em;
+    }
+
+    label {
+        color: #084545;
+    }
+
+    .errors {
+        color: red;
+    }
+</style>
+<script type="module">
+    import {populateFields, collectValues, getFieldAndValue} from "../lib/field-assist.js";
+
+    const values = {
+        name: 'Albert Einstein',
+        generalBio: 'I was a cool genius',
+        preferredLanguage: 'German',
+
+    }
+
+    populateFields(document.body, values)
+    showErrors()
+
+    function showErrors() {
+        // this is errors display example
+        const errorDiv = document.getElementById('errors')
+        const errors = collectValues(document.body)._errors
+        if (errors) {
+            errorDiv.parentElement.style.visibility = 'visible'
+            errorDiv.textContent = JSON.stringify(errors, undefined, 2)
+        } else {
+            errorDiv.parentElement.style.visibility = 'hidden'
+        }
+    }
+
+    document.body.oninput = (event) => {
+        // this option used to update a single field - just what was changed
+        const {field, value} = getFieldAndValue(event);
+        console.dir({[field]: value})
+        showErrors();
+
+    }
+    document.body.querySelector('button').onclick = () => {
+        console.dir(collectValues(document.body))
+    }
+
+</script>
+
+
+</html>

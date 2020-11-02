@@ -1,0 +1,36 @@
+{
+  "name": "localize",
+  "version": "1.0.0",
+  "description": "Localization of text made super-easy",
+  "main": "lib/localize.js",
+  "types": "lib/localize.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dharmax/localize.git"
+  },
+  "keywords": [
+    "fields",
+    "html",
+    "localization",
+    "i8n",
+    "form",
+    "populating",
+    "binding",
+    "locale",
+    "language"
+  ],
+  "author": "Avi Tshuva, dharmax",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dharmax/localize/issues"
+  },
+  "homepage": "https://github.com/dharmax/localize",
+  "devDependencies": {
+    "typescript": "^4.0.5"
+  }
+}
