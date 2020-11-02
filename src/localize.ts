@@ -51,7 +51,7 @@ export function localize(input: string | number, namespace?: string): string {
     if (!isNaN(parseInt(input)))
         return input
 
-    const {fields, normalizedTemplate} =  normalizeTemplate(input);
+    const {fields, normalizedTemplate} = normalizeTemplate(input);
 
     // find the localization template in the provided namespace and if it is not found there, try in the default
     //  namespace
@@ -109,23 +109,35 @@ declare let window: any
 
 setDictionary('en', {})
 
-function compileDictionary( dictionary:Dictionary):Dictionary {
+function compileDictionary(dictionary: Dictionary): Dictionary {
 
     if (!dictionary['*'])
         dictionary['*'] = {}
-    return dictionary
 
-    const result:Dictionary = {}
+    const result: Dictionary = {}
 
-    for ( let [s,t] of Object.entries(dictionary)) {
-        const {fields, normalizedTemplate} = normalizeTemplate(s)
-        const target = render( t, fields)
-
+    for (let [nsName, namespace] of Object.entries(dictionary)) {
+        result[nsName] = {}
+        for (let [s, t] of Object.entries(namespace)) {
+            const {fields, normalizedTemplate} = normalizeTemplate(s)
+            const reversedFields = reverseFields(fields)
+            const target = render(t, reversedFields)
+            result[nsName][normalizedTemplate] = target
+        }
     }
     return result
+
+    function reverseFields(fields: {}) {
+        const result = {}
+        for (let [k, v] of Object.entries(fields))
+            // @ts-ignore
+            result['#' + v + '#'] = k
+
+        return result
+    }
 }
 
-function normalizeTemplate(orgString: string ) {
+function normalizeTemplate(orgString: string) {
     // make orgString template-compatible and build replacement table in fields
     const fields: { [k: string]: string } = {}
     const fieldsInSource = orgString.match(/#(.*?)#/g)

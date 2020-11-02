@@ -35,7 +35,7 @@
     const dictionaries = {
         en: {
             '*': {
-                'there are #1# people here': 'There are #1# people here'
+                'there are #xxx# people here': 'There are #xxx# people here'
             }
         },
         he: {
@@ -44,7 +44,8 @@
             }
         }
     }
-
+    setDictionary('en', dictionaries['en'])
+    localizeTags()
     document.getElementById('lang').onchange = (event) => {
         const locale = event.target.value
         setDictionary(locale, dictionaries[locale])
