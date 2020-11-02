@@ -1,5 +1,5 @@
 {
-  "name": "localize",
+  "name": "just-localize",
   "version": "1.0.0",
   "description": "Localization of text made super-easy",
   "main": "lib/localize.js",

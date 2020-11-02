@@ -7,24 +7,26 @@
 <body>
 
 <div class="config">
-    <label for="lang">Choose language</label>
+    <label for="lang" localize>Choose language</label>
     <select name="language" id="lang">
         <option value="he">Hebrew</option>
         <option value="en">English</option>
     </select>
 </div>
-<article class="form">
+<article >
 
     <div localize>There are #3# people here</div>
 
 </article>
 </body>
 <style>
+    body {
+        margin: 5em;
+    }
     article {
-        margin: 5em auto;
+        margin: 2em 5em ;
         display: flex;
         flex-direction: column;
-
     }
 
 </style>

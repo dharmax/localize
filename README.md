@@ -1,11 +1,9 @@
-# Field-Assist
+# Just Localize!
 **TL;DR** : just call `localizeTags` in your page and all tags marked with 'localize' attribute
 will be translated!  
 
-[Live Demo](https://stackblitz.com/edit/localize?file=index.ts)
-
 ## Install
-`npm install localize`
+`npm install just-localize`
 
 ## API documentation
 [Full API documentation](./api.md)
@@ -20,8 +18,32 @@ This tiny library help you add support for multiple language to your site.
 
 # example      
 See full example in a single web-page under the example directory. No need for a server to run it.
-Or you can check out the [Live Demo](https://stackblitz.com/edit/field-assist-demo?file=index.ts)
-of it.
+ 
+ ```
+<html>
+  <label localize>There are #32# people here</label>
+</html> 
+ ```
+```
+<script>
+ 
+    const dictionaries = {
+        en: {
+            '*': {
+                'there are #xxx# people here': 'There are #xxx# people here'
+            }
+        },
+        he: {
+            '*': {
+                'there are #1# people here': 'יש פה #1# אנשים'
+            }
+        }
+    }
+
+   setDictionary(locale, dictionaries['he'])
+   localizeTags()
+</script>
+```
  
 
 # License

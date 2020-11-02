@@ -15,15 +15,15 @@
 <dt><a href="#setDictionary">setDictionary(locale, dictionary_)</a></dt>
 <dd><p>Set active dictionary</p>
 </dd>
-<dt><a href="#localize">localize(orgString, namespace)</a></dt>
+<dt><a href="#localize">localize(input, namespace)</a></dt>
 <dd><p>Localize the given string/template</p>
 </dd>
-<dt><a href="#localizeTag">localizeTag(n, namespace)</a></dt>
-<dd><p>Localizes the content of a tag</p>
+<dt><a href="#localizeTag">localizeTag(element, namespace)</a></dt>
+<dd><p>Localizes the content of a single tag</p>
 </dd>
-<dt><a href="#localizeTags">localizeTags(root)</a></dt>
+<dt><a href="#localizeTags">localizeTags(rootElement, namespace)</a></dt>
 <dd><p>Localize all tags marked with the &quot;localize&quot; attribute.
-Note that this function is good just for static stuff. Otherwise, do it dynamically (in JS)</p>
+Note that if the page, or the part under the rootElement changes, the method should be called again.</p>
 </dd>
 <dt><a href="#render">render(template, fields)</a></dt>
 <dd></dd>
@@ -55,39 +55,40 @@ Set active dictionary
 
 <a name="localize"></a>
 
-## localize(orgString, namespace)
+## localize(input, namespace)
 Localize the given string/template
 
 **Kind**: global function  
 
 | Param | Description |
 | --- | --- |
-| orgString |  |
-| namespace | the namespace to use |
+| input |  |
+| namespace | the namespace to use. |
 
 <a name="localizeTag"></a>
 
-## localizeTag(n, namespace)
-Localizes the content of a tag
-
-**Kind**: global function  
-
-| Param | Default | Description |
-| --- | --- | --- |
-| n |  | the html node |
-| namespace | <code>*</code> | the namespace to use |
-
-<a name="localizeTags"></a>
-
-## localizeTags(root)
-Localize all tags marked with the "localize" attribute.
-Note that this function is good just for static stuff. Otherwise, do it dynamically (in JS)
+## localizeTag(element, namespace)
+Localizes the content of a single tag
 
 **Kind**: global function  
 
 | Param | Description |
 | --- | --- |
-| root | starting point to check |
+| element | the html node |
+| namespace | the namespace to use. A 'localize' attribute can also denotes the namespace. |
+
+<a name="localizeTags"></a>
+
+## localizeTags(rootElement, namespace)
+Localize all tags marked with the "localize" attribute.
+Note that if the page, or the part under the rootElement changes, the method should be called again.
+
+**Kind**: global function  
+
+| Param | Description |
+| --- | --- |
+| rootElement | starting point to check |
+| namespace | the namespace to use. A 'localize' attribute can also denotes the namespace. |
 
 <a name="render"></a>
 
